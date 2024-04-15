@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Jayrajsinh Dabhi</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="ecommerce_app">Ecommerce App</string>
+    <string name="click_to_login">Click to Login</string>
+    <string name="click_to_register">Click to Register</string>
+    <string name="logout">Logout</string>
+    <string name="infinite_shoes">Infinite Shoes</string>
+    <string name="name">Name :</string>
+    <string name="price">Price :</string>
+    <string name="description">Description :</string>
+    <string name="checkout">Checkout</string>
+    <string name="place_an_order">Place an Order</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="continue_shopping">Continue Shopping</string>
+    <string name="thank_you_order_has_been_placed">Thank You, Order has been placed successfully</string>
+</resources>
