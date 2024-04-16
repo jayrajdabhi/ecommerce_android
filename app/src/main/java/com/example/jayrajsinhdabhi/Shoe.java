@@ -1,10 +1,21 @@
 package com.example.jayrajsinhdabhi;
 
 public class Shoe {
+
+
+    String fulldescription;
     String name, description;
     Double price;
     String iurl;
 
+
+    public String getFulldescription() {
+        return fulldescription;
+    }
+
+    public void setFulldescription(String fulldescription) {
+        this.fulldescription = fulldescription;
+    }
     public Double getPrice() {
         return price;
     }

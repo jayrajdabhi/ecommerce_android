@@ -77,6 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("price", shoe.getPrice());
                 intent.putExtra("description", shoe.getDescription());
                 intent.putExtra("imageUrl", shoe.getIurl());
+                intent.putExtra("fulldescription", shoe.getFulldescription());
                 context.startActivity(intent);
             }
         }
