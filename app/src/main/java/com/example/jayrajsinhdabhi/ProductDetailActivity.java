@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,8 +15,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ProductDetailActivity extends AppCompatActivity {
     ImageButton imageButton;
-
+    private int quantity = 1;
+    private double unitPrice;
     ImageButton cart;
+    Button goToCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         cart = findViewById(R.id.cart);
         imageButton = findViewById(R.id.logout);
-
+        goToCart = findViewById(R.id.goToCart);
 
         // Get data from intent
         Intent intent = getIntent();
@@ -32,6 +35,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         double price = intent.getDoubleExtra("price", 0.0);
         String description = intent.getStringExtra("fulldescription");
         String imageUrl = intent.getStringExtra("imageUrl");
+        unitPrice = intent.getDoubleExtra("price", 0.0);
 
         // Set data to views
         TextView nameTextView = findViewById(R.id.product_name);
@@ -44,6 +48,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         descriptionTextView.setText(description);
         Glide.with(this).load(imageUrl).placeholder(R.drawable.infinite).error(R.drawable.infinite).into(imageView);
 
+        updateTotalPrice();
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +67,40 @@ public class ProductDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        goToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void decreaseQuantity(View view) {
+        if (quantity > 1) {
+            quantity--;
+            updateTotalPrice();
+            updateQuantityTextView();
+        }
+    }
+
+    // Method to increase quantity when "+" button is clicked
+    public void increaseQuantity(View view) {
+        quantity++;
+        updateTotalPrice();
+        updateQuantityTextView();
+    }
+
+    // Method to update the total price based on the quantity
+    private void updateTotalPrice() {
+        double totalPrice = unitPrice * quantity;
+        TextView totalPriceTextView = findViewById(R.id.tv_total_price);
+        totalPriceTextView.setText(String.format("Total Price: $%.2f", totalPrice));
+    }
+
+    // Method to update the quantity TextView
+    private void updateQuantityTextView() {
+        TextView quantityTextView = findViewById(R.id.tv_quantity);
+        quantityTextView.setText(String.valueOf(quantity));
     }
 }
